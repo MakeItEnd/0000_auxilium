@@ -6,12 +6,19 @@ PROJECT(AUXILIUM
     HOMEPAGE_URL ""
     LANGUAGES C)
 
-add_executable(auxilium
-    "src/main.c")
+add_executable(auxilium)
+
+target_sources(auxilium
+    PRIVATE
+        "${PROJECT_SOURCE_DIR}/src/main.c"
+
+    PUBLIC
+        "${PROJECT_SOURCE_DIR}/include/platform_detection.h")
 
 target_include_directories(auxilium
     PRIVATE
-        "${PROJECT_SRC_ROOT}/include")
+        "${PROJECT_SOURCE_DIR}/include"
+        "${PROJECT_BINARY_DIR}/include")
 
 target_compile_features(auxilium
     PUBLIC

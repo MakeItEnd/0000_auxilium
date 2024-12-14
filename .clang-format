@@ -93,7 +93,7 @@ BraceWrapping:
   BeforeElse: true
   # BeforeLambdaBody: # ! cpp
   BeforeWhile: true
-  IndentBraces: true
+  IndentBraces: false
   SplitEmptyFunction: false
   SplitEmptyRecord: false
   # SplitEmptyNamespace: # ! cpp
