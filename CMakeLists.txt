@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.31.1)
 
 PROJECT(AUXILIUM
     VERSION 0.1.0
-    DESCRIPTION "A collection of C helpers."
-    HOME_PAGE ""
-    LANGUGAGES C)
+    DESCRIPTION "A collection of C helpers"
+    HOMEPAGE_URL ""
+    LANGUAGES C)
 
 add_executable(auxilium
     "src/main.c")

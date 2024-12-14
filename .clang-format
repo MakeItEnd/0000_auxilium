@@ -1,0 +1,267 @@
+# Disabling Formatting on a Piece of Code
+# int formatted_code;
+# // clang-format off
+#     void    unformatted_code  ;
+# // clang-format on
+# void formatted_code_again;
+---
+Language: Cpp
+
+# BasedOnStyle: # ! Not Used
+# AccessModifierOffset: CPP Only
+AlignAfterOpenBracket: BlockIndent
+AlignArrayOfStructures: Left
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+  AlignCompound: true
+  # AlignFunctionDeclarations: false # ! Might be a clang-format 20 option
+  AlignFunctionPointers: false
+  PadOperators: true
+AlignConsecutiveBitFields:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: true
+  AlignCompound: true
+  # AlignFunctionDeclarations: false # ! Might be a clang-format 20 option
+  AlignFunctionPointers: false
+  PadOperators: true
+AlignConsecutiveDeclarations:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: true
+  AlignCompound: true
+  # AlignFunctionDeclarations: false # ! Might be a clang-format 20 option
+  AlignFunctionPointers: false
+  PadOperators: true
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: true
+  AlignCompound: true
+  # AlignFunctionDeclarations: false # ! Might be a clang-format 20 option
+  AlignFunctionPointers: false
+  PadOperators: true
+AlignConsecutiveShortCaseStatements: # * Only applies if `AllowShortCaseExpressionOnASingleLine` or `AllowShortCaseLabelsOnASingleLine` is `true`.
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: true
+  AlignCaseArrows: true
+  AlignCaseColons: true
+# AlignConsecutiveTableGenBreakingDAGArgColons: # ! llvm
+# AlignConsecutiveTableGenCondOperatorColons: # ! llvm
+# AlignConsecutiveTableGenDefinitionColons: # ! llvm
+AlignEscapedNewlines: Left
+AlignOperands: AlignAfterOperator # * Depends on `BreakBeforeBinaryOperators`
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 2
+AllowAllArgumentsOnNextLine: false
+# AllowAllConstructorInitializersOnNextLine: # ! deprecated
+AllowAllParametersOfDeclarationOnNextLine: false
+# AllowBreakBeforeNoexceptSpecifier: # ! cpp
+AllowShortBlocksOnASingleLine: Empty # * Might want `Always`
+# AllowShortCaseExpressionOnASingleLine: # * Not clear what this is
+AllowShortCaseLabelsOnASingleLine: true
+# AllowShortCompoundRequirementOnASingleLine: # ! cpp
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: true
+# AllowShortLambdasOnASingleLine: # ! cpp
+AllowShortLoopsOnASingleLine: true
+# AlwaysBreakAfterDefinitionReturnType: # ! deprecated
+# AlwaysBreakAfterReturnType: # ! deprecated
+AlwaysBreakBeforeMultilineStrings: true
+# AlwaysBreakTemplateDeclarations: # ! deprecated
+AttributeMacros: [] # * A vector of strings that should be interpreted as attributes/qualifiers instead of identifiers.
+BinPackArguments: false
+BinPackParameters: false # * After version 20 use `AlwaysOnePerLine`
+BitFieldColonSpacing: Both
+BraceWrapping:
+  AfterCaseLabel: true
+  # AfterClass: # ! cpp
+  AfterControlStatement: Always
+  AfterEnum: true
+  AfterFunction: false
+  # AfterNamespace: # ! cpp
+  # AfterObjCDeclaration: # ! ObjC
+  AfterStruct: true
+  AfterUnion: true
+  AfterExternBlock: true
+  BeforeCatch: true
+  BeforeElse: true
+  # BeforeLambdaBody: # ! cpp
+  BeforeWhile: true
+  IndentBraces: true
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  # SplitEmptyNamespace: # ! cpp
+BracedInitializerIndentWidth: 4
+BreakAdjacentStringLiterals: true
+BreakAfterAttributes: Leave
+# BreakAfterJavaFieldAnnotations: # ! java
+BreakAfterReturnType: All
+# BreakArrays: # ! json
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeBraces: Custom # * Or `Attach`
+# BreakBeforeConceptDeclarations: # ! cpp
+BreakBeforeInlineASMColon: Always
+BreakBeforeTernaryOperators: true
+# BreakBinaryOperations: # ! clang-format 20
+# BreakConstructorInitializers: # ! cpp
+BreakFunctionDefinitionParameters: true
+# BreakInheritanceList: # ! cpp
+BreakStringLiterals: false
+# BreakTemplateDeclarations: # ! cpp
+ColumnLimit: 80 # * Might be to stric test `120` as well
+# CommentPragmas: # * Not-yet-decided
+# CompactNamespaces: # ! cpp
+# ConstructorInitializerAllOnOneLineOrOnePerLine: # ! deprecated
+# ConstructorInitializerIndentWidth: # ! cpp
+ContinuationIndentWidth: 8
+# Cpp11BracedListStyle: # ! cpp
+# DeriveLineEnding: # ! deprecated
+DerivePointerAlignment: false
+DisableFormat: false
+# EmptyLineAfterAccessModifier: # ! cpp
+# EmptyLineBeforeAccessModifier: # ! cpp
+# ExperimentalAutoDetectBinPacking: # ! experminetal flag
+# FixNamespaceComments: # ! cpp
+ForEachMacros: [] # * A vector of macros that should be interpreted as foreach loops instead of as function calls.
+IfMacros: [] # * A vector of macros that should be interpreted as conditionals instead of as function calls.
+IncludeBlocks: Regroup
+# IncludeCategories: # * Not-yet-decided
+# IncludeIsMainRegex: # * Not clear what this does
+# IncludeIsMainSourceRegex: # * Not clear what this does
+# IndentAccessModifiers: # ! cpp
+IndentCaseBlocks: false
+IndentCaseLabels: false
+IndentExternBlock: NoIndent
+IndentGotoLabels: false
+IndentPPDirectives: AfterHash # * Or `None`
+# IndentRequiresClause: # ! cpp
+IndentWidth: 8
+IndentWrappedFunctionNames: false
+InsertBraces: true
+InsertNewlineAtEOF: true
+InsertTrailingCommas: Wrapped
+IntegerLiteralSeparator:
+  Binary: 4
+  BinaryMinDigits: 8
+  Decimal: 3
+  DecimalMinDigits: 6
+  Hex: 2
+  HexMinDigits: 4
+# JavaImportGroups: # ! java
+# JavaScriptQuotes: # ! java
+# JavaScriptWrapImports: # ! java
+KeepEmptyLines:
+  AtEndOfFile: true
+  AtStartOfBlock: false
+  AtStartOfFile: false
+# KeepEmptyLinesAtEOF: # ! deprecated
+# KeepEmptyLinesAtTheStartOfBlocks: # ! deprecated
+# KeepFormFeed: # ! clang-format 20
+# LambdaBodyIndentation: # ! cpp
+LineEnding: LF
+# MacroBlockBegin: # * Not-yet-decided
+# MacroBlockEnd: # * Not-yet-decided
+# Macros: # * Not-yet-decided
+# MainIncludeChar: # * Not clear what this does
+MaxEmptyLinesToKeep: 2
+# NamespaceIndentation: # ! cpp
+# NamespaceMacros: # ! cpp
+# ObjCBinPackProtocolList: # ! ObjC
+# ObjCBlockIndentWidth: # ! ObjC
+# ObjCBreakBeforeNestedBlockParam: # ! ObjC
+# ObjCPropertyAttributeOrder: # ! ObjC
+# ObjCSpaceAfterProperty: # ! ObjC
+# ObjCSpaceBeforeProtocolList: # ! ObjC
+PPIndentWidth: -1
+# PackConstructorInitializers: # ! cpp
+# PenaltyBreakAssignment: # * Not-yet-decided
+# PenaltyBreakBeforeFirstCallParameter: # * Not-yet-decided
+# PenaltyBreakComment: # * Not-yet-decided
+# PenaltyBreakFirstLessLess: # * Not-yet-decided
+# PenaltyBreakOpenParenthesis: # * Not-yet-decided
+# PenaltyBreakScopeResolution: # ! cpp
+# PenaltyBreakString: # * Not-yet-decided
+# PenaltyBreakTemplateDeclaration: # ! cpp
+# PenaltyExcessCharacter: # * Not-yet-decided
+# PenaltyIndentedWhitespace: # * Not-yet-decided
+# PenaltyReturnTypeOnItsOwnLine: # * Not-yet-decided
+PointerAlignment: Left
+QualifierAlignment: Leave # * Might break code if set with other options.
+# QualifierOrder: # ? Not decided yet
+# RawStringFormats: # ? Not decided yet
+ReferenceAlignment: Pointer
+# ReflowComments: IndentOnly # ! Enable after clang-format 20
+RemoveBracesLLVM: false
+# RemoveEmptyLinesInUnwrappedLines: # ! clang-format 20
+RemoveParentheses: Leave
+RemoveSemicolon: false
+# RequiresClausePosition: # ! cpp
+# RequiresExpressionIndentation: # ! cpp
+SeparateDefinitionBlocks: Always
+# ShortNamespaceLines: # ! cpp
+SkipMacroDefinitionBody: true # * Change to false if problems arise.
+SortIncludes: CaseSensitive
+# SortJavaStaticImport: # ! java
+# SortUsingDeclarations: # ! cpp
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
+# SpaceAfterTemplateKeyword: # ! cpp
+SpaceAroundPointerQualifiers: Default
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: true
+# SpaceBeforeCpp11BracedList: # ! cpp
+# SpaceBeforeCtorInitializerColon: # ! cpp
+# SpaceBeforeInheritanceColon: # ! cpp
+SpaceBeforeJsonColon: false
+SpaceBeforeParens: Custom
+SpaceBeforeParensOptions:
+  AfterControlStatements: true
+  AfterForeachMacros: false
+  AfterFunctionDeclarationName: false
+  AfterFunctionDefinitionName: false
+  AfterIfMacros: false
+  # AfterOverloadedOperator: # ! cpp
+  # AfterPlacementOperator: # ! cpp
+  # AfterRequiresInClause: # ! cpp
+  # AfterRequiresInExpression: # ! cpp
+  BeforeNonEmptyParentheses: false
+# SpaceBeforeRangeBasedForLoopColon: # ! cpp
+SpaceBeforeSquareBrackets: false
+SpaceInEmptyBlock: false
+# SpaceInEmptyParentheses: # ! deprecated
+SpacesBeforeTrailingComments: 2
+# SpacesInAngles: # ! cpp
+# SpacesInCStyleCastParentheses: # ! deprecated
+# SpacesInConditionalStatement: # ! deprecated
+SpacesInContainerLiterals: false
+SpacesInLineCommentPrefix:
+  Minimum: 1
+  Maximum: 2 # * -1 to disable
+SpacesInParens: Custom
+SpacesInParensOptions:
+  ExceptDoubleParentheses: true
+  InConditionalStatements: false
+  InCStyleCasts: false
+  InEmptyParentheses: false
+  Other: false
+# SpacesInParentheses: # ! deprecated
+SpacesInSquareBrackets: false
+# Standard: Latest # ! Not sure if should use.
+StatementAttributeLikeMacros: [] # * Add here macros that are ignored in front of statements, so they are treated as attributes
+StatementMacros: [] # * A vector of macros that should be interpreted as complete statements.
+# TabWidth: 8 # ! Don't use tabs.
+# TableGenBreakInsideDAGArg: # ! llvm
+# TableGenBreakingDAGArgOperators: # ! llvm
+# TemplateNames: # ! cpp
+TypeNames: [] # * A vector of non-keyword identifiers that should be interpreted as type names.
+TypenameMacros: [] # * A vector of macros that should be interpreted as type declarations instead of as function calls.
+# UseCRLF: # ! deprecated
+UseTab: Never
+# VerilogBreakBetweenInstancePorts: # ! verilog
+WhitespaceSensitiveMacros: [] # * A vector of macros which are whitespace-sensitive and should not be touched.
