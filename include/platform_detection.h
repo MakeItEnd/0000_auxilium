@@ -9,6 +9,7 @@
 #ifndef HEX_PLATFORM_DETECTION_H
 #define HEX_PLATFORM_DETECTION_H
 
+
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__)
 /** @brief Is true if compiled for the windows platform; otherwise is not defined. */
 #        define PLATFORM_WINDOWS true
@@ -49,5 +50,6 @@
 // Unknown platform -----------------------------------------------------------
 #        error "Unknown platform!"
 #endif
+
 
 #endif // HEX_PLATFORM_DETECTION_H
