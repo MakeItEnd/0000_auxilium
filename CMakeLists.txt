@@ -13,7 +13,8 @@ target_sources(auxilium
         "${PROJECT_SOURCE_DIR}/src/main.c"
 
     PUBLIC
-        "${PROJECT_SOURCE_DIR}/include/platform_detection.h")
+        "${PROJECT_SOURCE_DIR}/include/platform_detection.h"
+        "${PROJECT_SOURCE_DIR}/include/utils.h")
 
 target_include_directories(auxilium
     PRIVATE
