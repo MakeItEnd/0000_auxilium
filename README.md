@@ -6,7 +6,7 @@ This is meant for personal use but anyone is welcome to use anything from here.
 Constructive feedback is always welcomed.
 
 > [!CAUTION]
-> I an not a professional `C` developer so the code in this repo is most likely not production quality.
+> I am not a professional `C` developer so the code in this repo is most likely not production quality.
 
 # Platform detection
 
