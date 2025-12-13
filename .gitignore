@@ -1,5 +1,5 @@
-result/
-result
-.direnv/
 build/
 .cache/
+.direnv/
+result
+result/
