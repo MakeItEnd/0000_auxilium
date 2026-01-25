@@ -11,28 +11,28 @@
 
 void*
 allocator_alloc(
-        struct Allocator* self,
-        size_t            size
+    struct Allocator* self,
+    size_t            size
 )
 {
-        return self->vtable.alloc(self, size);
+    return self->vtable.alloc(self, size);
 }
 
 void*
 allocator_realloc(
-        struct Allocator* self,
-        void*             allocation,
-        size_t            size
+    struct Allocator* self,
+    void*             allocation,
+    size_t            size
 )
 {
-        return self->vtable.realloc(self, allocation, size);
+    return self->vtable.realloc(self, allocation, size);
 }
 
 void
 allocator_free(
-        struct Allocator* self,
-        void*             allocation
+    struct Allocator* self,
+    void*             allocation
 )
 {
-        self->vtable.free(self, allocation);
+    self->vtable.free(self, allocation);
 }

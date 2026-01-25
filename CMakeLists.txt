@@ -6,13 +6,13 @@ PROJECT(AUXILIUM
     HOMEPAGE_URL ""
     LANGUAGES C)
 
-add_executable(auxilium)
+add_library(auxilium)
 
 target_sources(auxilium
-    PRIVATE
-        "${PROJECT_SOURCE_DIR}/src/main.c"
-
     PUBLIC
+        "${PROJECT_SOURCE_DIR}/include/auxilium.h"
+
+    PRIVATE
         "${PROJECT_SOURCE_DIR}/include/platform_detection.h"
         "${PROJECT_SOURCE_DIR}/include/utils.h"
 
@@ -26,16 +26,30 @@ target_sources(auxilium
         "${PROJECT_SOURCE_DIR}/src/dynamic_array.c")
 
 target_include_directories(auxilium
-    PRIVATE
+    PUBLIC
         "${PROJECT_SOURCE_DIR}/include"
         "${PROJECT_BINARY_DIR}/include")
 
 set_target_properties(auxilium
   PROPERTIES
     C_STANDARD 23
-    C_STANDARD_REQUIRED True)
+    C_STANDARD_REQUIRED ON
+    C_EXTENSIONS OFF)
+
+
+if(MSVC)
+  target_compile_options(auxilium PRIVATE /W4 /WX)
+else()
+  target_compile_options(auxilium PRIVATE -Wall -Wextra -Wpedantic -Werror)
+endif()
 
 install(TARGETS auxilium DESTINATION bin)
+
+
+add_executable(auxilium_tests)
+target_sources(auxilium_tests PRIVATE "${PROJECT_SOURCE_DIR}/examples/main.c")
+target_link_libraries(auxilium_tests PRIVATE auxilium)
+# target_include_directories(auxilium_tests PRIVATE ${auxilium_INCLUDE_DIRS})
 
 # enable_testing()
 

@@ -21,10 +21,17 @@
 
 // #region Private Methods
 
-void
+void*
 _private_dynamic_array_push(
-    void* array,
-    void* value_ptr
+        void* array,
+        void* value_ptr
+);
+
+void*
+_private_dynamic_array_init(
+        uint64_t          stride,
+        struct Allocator* allocator,
+        uint64_t          capacity
 );
 
 // #endregion // Private Methods
@@ -34,9 +41,9 @@ _private_dynamic_array_push(
 
 void*
 dynamic_array_init(
-    struct Allocator* allocator,
-    uint64_t          length,
-    uint64_t          stride
+        struct Allocator* allocator,
+        uint64_t          length,
+        uint64_t          stride
 );
 
 void
@@ -50,6 +57,24 @@ dynamic_array_length(void* array);
 // ----------------------------------------------------------------------------
 
 /**
+ * @brief Initializez a dynamic array of a given Type.
+ *
+ * @param Type Used to calculate the stride of the array.
+ * @param allocator The allocator used to handel memory for the array.
+ * @param capacity The initial capacity to allocate for the array. If a capacity of 0 is passed the HEX_DYNAMIC_ARRAY_INITIAL_CAPACITY will be used.
+ *
+ * @return A pointer to a newly allocated array of the given Type.
+ */
+#define dynamic_array_init(Type, allocator, capacity) \
+({ \
+    (Type*)_private_dynamic_array_init( \
+            sizeof(Type),\
+            allocator, \
+            capacity\
+    ); \
+})
+
+/**
  * @brief Pushes a new entry to the given array. Resizes if necessary.
  *
  * @param array The array to be pushed to.
@@ -57,10 +82,10 @@ dynamic_array_length(void* array);
  *
  * @returns A pointer to the array block.
  */
-#define dynamic_array_push(array, value)   \
-    {                                          \
-        typeof(value) temp = value;            \
-        _private_dynamic_array_push(array, &temp); \
-    }
+#define dynamic_array_push(array, value) \
+({ \
+    typeof(value) temp = value; \
+    array = _private_dynamic_array_push(array, &temp); \
+})
 
 #endif  // HEX_DYNAMIC_ARRAY_H

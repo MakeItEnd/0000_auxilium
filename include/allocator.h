@@ -12,6 +12,11 @@
 
 #include <stddef.h>
 
+/* Set up for C function definitions, even when using C++ */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 struct Allocator;
 
 /**
@@ -20,42 +25,42 @@ struct Allocator;
  */
 struct AllocatorVtable
 {
-        void* (*alloc)(
-                const struct Allocator* allocator,
-                size_t                  size
-        );
-        void* (*realloc)(
-                const struct Allocator* allocator,
-                void*                   allocation,
-                size_t                  size
-        );
-        void (*free)(
-                const struct Allocator* allocator,
-                void*                   allocation
-        );
+    void* (*alloc)(
+        const struct Allocator* allocator,
+        size_t                  size
+    );
+    void* (*realloc)(
+        const struct Allocator* allocator,
+        void*                   allocation,
+        size_t                  size
+    );
+    void (*free)(
+        const struct Allocator* allocator,
+        void*                   allocation
+    );
 };
 
 struct Allocator
 {
-        void*                  handle;
-        struct AllocatorVtable vtable;
+    void*                  handle;
+    struct AllocatorVtable vtable;
 };
 
 void*
 allocator_alloc(
-        struct Allocator* self,
-        size_t            size
+    struct Allocator* self,
+    size_t            size
 );
 void*
 allocator_realloc(
-        struct Allocator* self,
-        void*             allocation,
-        size_t            size
+    struct Allocator* self,
+    void*             allocation,
+    size_t            size
 );
 void
 allocator_free(
-        struct Allocator* self,
-        void*             allocation
+    struct Allocator* self,
+    void*             allocation
 );
 
 // Allocator Implementations ==================================================
@@ -83,5 +88,10 @@ void
 allocator_basic_deinit(struct Allocator* self);
 
 #pragma endregion AllocatorBasic
+
+/* Ends C function definitions when using C++ */
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // HEX_ALLOCATOR_H
