@@ -49,6 +49,28 @@ install(TARGETS auxilium DESTINATION bin)
 add_executable(auxilium_tests)
 target_sources(auxilium_tests PRIVATE "${PROJECT_SOURCE_DIR}/examples/main.c")
 target_link_libraries(auxilium_tests PRIVATE auxilium)
+
+# target_compile_options(auxilium_tests
+#   PRIVATE
+#     -fno-omit-frame-pointer
+#     -fsanitize=address)
+# set (CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address")
+# set (CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address")
+if(CMAKE_BUILD_TYPE MATCHES "Debug")
+  set(
+    CMAKE_C_FLAGS
+    "${CMAKE_C_FLAGS} -Werror -fsanitize=undefined -fsanitize=address"
+  )
+  target_link_options(auxilium_tests
+    BEFORE PUBLIC -fsanitize=undefined PUBLIC -fsanitize=address
+  )
+endif()
+
+set_target_properties(auxilium_tests
+  PROPERTIES
+    C_STANDARD 23
+    C_STANDARD_REQUIRED ON
+    C_EXTENSIONS OFF)
 # target_include_directories(auxilium_tests PRIVATE ${auxilium_INCLUDE_DIRS})
 
 # enable_testing()

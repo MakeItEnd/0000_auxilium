@@ -21,36 +21,30 @@
 
 // #region Private Methods
 
-void*
+void
 _private_dynamic_array_push(
-        void* array,
-        void* value_ptr
+    void** array,
+    void*  value_ptr
 );
 
-void*
+void
 _private_dynamic_array_init(
-        uint64_t          stride,
-        struct Allocator* allocator,
-        uint64_t          capacity
+    uint64_t          stride,
+    struct Allocator* allocator,
+    uint64_t          capacity,
+    void**            new_array
 );
+
+void
+_private_dynamic_array_deinit(void** array);
 
 // #endregion // Private Methods
 
 // Public functions -----------------------------------------------------------
 // ----------------------------------------------------------------------------
 
-void*
-dynamic_array_init(
-        struct Allocator* allocator,
-        uint64_t          length,
-        uint64_t          stride
-);
-
-void
-dynamic_array_deinit(void* array);
-
 uint64_t
-dynamic_array_length(void* array);
+dynamic_array_length(void const* array);
 
 
 // Public macros --------------------------------------------------------------
@@ -63,16 +57,18 @@ dynamic_array_length(void* array);
  * @param allocator The allocator used to handel memory for the array.
  * @param capacity The initial capacity to allocate for the array. If a capacity of 0 is passed the HEX_DYNAMIC_ARRAY_INITIAL_CAPACITY will be used.
  *
- * @return A pointer to a newly allocated array of the given Type.
+ * @return true; The array was initialized succesfully.
+ * @return false; The array was NOT initialized succesfully.
  */
-#define dynamic_array_init(Type, allocator, capacity) \
-({ \
-    (Type*)_private_dynamic_array_init( \
+#define dynamic_array_init(Type, allocator, capacity, new_array) \
+do { \
+    _private_dynamic_array_init( \
             sizeof(Type),\
             allocator, \
-            capacity\
+            capacity,\
+            (void**)new_array\
     ); \
-})
+} while(0)
 
 /**
  * @brief Pushes a new entry to the given array. Resizes if necessary.
@@ -83,9 +79,19 @@ dynamic_array_length(void* array);
  * @returns A pointer to the array block.
  */
 #define dynamic_array_push(array, value) \
-({ \
+do { \
     typeof(value) temp = value; \
-    array = _private_dynamic_array_push(array, &temp); \
-})
+    _private_dynamic_array_push((void**)array, &temp); \
+} while(0)
+
+/**
+ * @brief Deinitialize an allocated array and set to nullptr.
+ *
+ * @param array The array to deinitialize and set to nullptr.
+ */
+#define dynamic_array_deinit(array) \
+do {\
+    _private_dynamic_array_deinit((void**)array); \
+} while(0)
 
 #endif  // HEX_DYNAMIC_ARRAY_H
